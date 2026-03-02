@@ -49,7 +49,7 @@ export default function LoginPage() {
           className="object-cover"
           priority
         />
-        <div className="absolute inset-0 bg-black/40 backdrop-blur-xs"></div>
+        <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]"></div>
       </div>
 
       {/* 2. LOGIN CARD */}
