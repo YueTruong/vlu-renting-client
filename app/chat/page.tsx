@@ -104,6 +104,11 @@ const getMessagePreview = (content: string) => {
   return normalized || "Chua co tin nhan";
 };
 
+const getComparableTimestamp = (dateString?: string) => {
+  const parsed = parseSafeDate(dateString);
+  return parsed ? parsed.getTime() : 0;
+};
+
 // --- TYPES ---
 type User = {
   id: number;
@@ -366,9 +371,20 @@ function ChatPageContent() {
     let lastTime = c.created_at || ""; 
     
     if (c.messages && c.messages.length > 0) {
-        const last = c.messages[c.messages.length - 1];
-        lastMsg = last.content;
-        lastTime = last.created_at;
+        const latest = c.messages.reduce((currentLatest, item) => {
+          if (!currentLatest) return item;
+
+          const latestTs = getComparableTimestamp(currentLatest.created_at);
+          const itemTs = getComparableTimestamp(item.created_at);
+
+          if (itemTs > latestTs) return item;
+          if (itemTs < latestTs) return currentLatest;
+
+          return item.id > currentLatest.id ? item : currentLatest;
+        }, c.messages[0]);
+
+        lastMsg = latest.content;
+        lastTime = latest.created_at;
     }
 
     return {
