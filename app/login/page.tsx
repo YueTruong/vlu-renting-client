@@ -130,7 +130,7 @@ export default function LoginPage() {
             <div className="pt-2">
               <div className="relative flex items-center py-2 mb-2">
                 <div className="grow border-t border-gray-200"></div>
-                <span className="shrink-0 mx-4 text-gray-400 text-xs uppercase font-medium">Hoặc đăng nhập thử nghiệm</span>
+                <span className="shrink-0 mx-4 text-gray-400 text-xs uppercase font-medium">Hoặc đăng nhập theo cách</span>
                 <div className="grow border-t border-gray-200"></div>
               </div>
 
@@ -143,7 +143,7 @@ export default function LoginPage() {
               >
                 <input
                   type="text"
-                  placeholder="Tên đăng nhập..."
+                  placeholder="Tên đăng nhập/Email nhà trường..."
                   className="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-3 outline-none transition-all"
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
