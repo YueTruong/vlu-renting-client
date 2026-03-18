@@ -170,7 +170,7 @@ export default function RentalContractsPanel({ roleView }: { roleView: UserRole 
 
   return (
     <section className="space-y-6">
-      <div className="contracts-hero overflow-hidden rounded-[32px] border border-rose-100 bg-[linear-gradient(135deg,#fff8f8_0%,#ffffff_62%,#fffaf7_100%)] shadow-[0_24px_70px_-40px_rgba(159,18,57,0.28)]">
+      <div className="contracts-hero overflow-hidden rounded-4xl border border-rose-100 bg-[linear-gradient(135deg,#fff8f8_0%,#ffffff_62%,#fffaf7_100%)] shadow-[0_24px_70px_-40px_rgba(159,18,57,0.28)]">
         <div className="grid gap-6 px-6 py-6 sm:px-8 lg:grid-cols-[minmax(0,1.35fr)_320px] lg:items-start">
           <div className="space-y-4">
             <div className="flex flex-wrap items-start justify-between gap-4">
@@ -304,12 +304,12 @@ export default function RentalContractsPanel({ roleView }: { roleView: UserRole 
         </div>
 
         {!selectedContract ? (
-          <div className="rounded-[32px] border border-dashed border-gray-300 bg-white p-10 text-center text-sm leading-6 text-gray-500 shadow-sm">
+          <div className="rounded-4xl border border-dashed border-gray-300 bg-white p-10 text-center text-sm leading-6 text-gray-500 shadow-sm">
             Chọn một hợp đồng cọc ở cột bên trái để xem chi tiết theo từng phần.
           </div>
         ) : (
           <div className="space-y-5">
-            <div className="overflow-hidden rounded-[32px] border border-gray-200 bg-white shadow-[0_24px_60px_-40px_rgba(15,23,42,0.4)]">
+            <div className="overflow-hidden rounded-4xl border border-gray-200 bg-white shadow-[0_24px_60px_-40px_rgba(15,23,42,0.4)]">
               <div className="contracts-subhero border-b border-gray-100 bg-[linear-gradient(135deg,#fffaf0_0%,#ffffff_60%,#f5fff9_100%)] px-6 py-6">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="max-w-2xl">
@@ -350,7 +350,7 @@ export default function RentalContractsPanel({ roleView }: { roleView: UserRole 
               <div className="grid gap-6 px-6 py-6 lg:grid-cols-[minmax(0,1.2fr)_320px]">
                 <div className="space-y-5">
                   <div className="grid gap-4 md:grid-cols-2">
-                  <div className="contracts-soft-surface rounded-[24px] border border-gray-200 bg-[#fffdf8] p-5">
+                  <div className="contracts-soft-surface rounded-3xl border border-gray-200 bg-[#fffdf8] p-5">
                       <div className="text-sm font-semibold text-gray-950">Thông tin chủ trọ</div>
                       <div className="mt-4 space-y-3 text-sm text-gray-700">
                         <div><span className="text-gray-500">CCCD/CMND:</span> {selectedContract.landlordId || "--"}</div>
@@ -360,7 +360,7 @@ export default function RentalContractsPanel({ roleView }: { roleView: UserRole 
                       </div>
                     </div>
 
-                    <div className="contracts-soft-surface rounded-[24px] border border-gray-200 bg-[#f8fffb] p-5">
+                    <div className="contracts-soft-surface rounded-3xl border border-gray-200 bg-[#f8fffb] p-5">
                       <div className="text-sm font-semibold text-gray-950">Thông tin người đặt cọc</div>
                       <div className="mt-4 space-y-3 text-sm text-gray-700">
                         <div><span className="text-gray-500">CCCD/CMND:</span> {selectedContract.tenantId || "--"}</div>
@@ -371,7 +371,7 @@ export default function RentalContractsPanel({ roleView }: { roleView: UserRole 
                     </div>
                   </div>
 
-                  <div className="rounded-[24px] border border-gray-200 bg-white p-5">
+                  <div className="rounded-3xl border border-gray-200 bg-white p-5">
                     <div className="text-sm font-semibold text-gray-950">Điều khoản cọc và lịch thanh toán dự kiến</div>
                     <div className="mt-4 grid gap-4 sm:grid-cols-3">
                       <div className="contracts-muted-panel rounded-2xl bg-gray-50 p-4">
@@ -433,7 +433,7 @@ export default function RentalContractsPanel({ roleView }: { roleView: UserRole 
                     </div>
                   </div>
 
-                  <div className="rounded-[24px] border border-gray-200 bg-white p-5">
+                  <div className="rounded-3xl border border-gray-200 bg-white p-5">
                     <div className="text-sm font-semibold text-gray-950">Chữ ký bên đặt cọc</div>
                     <div className="mt-4 flex flex-wrap items-center gap-4">
                       <div className="contracts-muted-panel relative h-24 w-52 overflow-hidden rounded-2xl border border-dashed border-gray-300 bg-gray-50">

@@ -275,61 +275,6 @@ export default function RoommateManagementPage() {
     );
   }
 
-    async function fetchData(nextSelectedId?: number) {
-    try {
-      setErrorMessage("");
-      const [listingData, postData] = await Promise.all([
-        getRoommateListings(),
-        getRoommatePosts(nextSelectedId),
-      ]);
-      setListings(listingData);
-      setRoommatePosts(postData);
-
-      if (!selectedId && listingData.length > 0) {
-        setSelectedId(listingData[0].id);
-      }
-    } catch {
-      setErrorMessage("Không thể tải dữ liệu ở ghép từ hệ thống. Vui lòng thử lại.");
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (!selectedId) return;
-
-    getRoommatePosts(selectedId)
-      .then(setRoommatePosts)
-      .catch(() => setErrorMessage("Không thể tải danh sách bài đăng theo phòng đã chọn."));
-  }, [selectedId]);
-
-  async function handleSubmit() {
-    if (!canSubmit || !selected) return;
-
-    setSubmitting(true);
-    setErrorMessage("");
-
-    try {
-      await createRoommateRequest({
-        listingId: selected.id,
-        title: title.trim(),
-        requestedSlots: requestedCount,
-        mode,
-      });
-      setRequestSent(true);
-      await fetchData(selected.id);
-    } catch {
-      setErrorMessage("Gửi yêu cầu thất bại. Vui lòng kiểm tra dữ liệu và thử lại.");
-    } finally {
-      setSubmitting(false);
-    }
-  }
-
   return (
     <UserPageShell
       title="Quản lý ở ghép"
@@ -545,56 +490,7 @@ export default function RoommateManagementPage() {
                 Hệ thống sẽ lưu yêu cầu để bạn theo dõi, đồng thời gửi thông báo
                 đến chủ trọ nếu phòng gốc có thông tin người đăng.
               </div>
-
-              {mode === "TENANT_SELF" ? (
-                <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                  <div className="text-sm font-semibold text-gray-900">Xác nhận chủ trọ</div>
-                  <div className="mt-3 space-y-2 text-sm text-gray-600">
-                    <label className="flex items-start gap-2">
-                      <input
-                        type="checkbox"
-                        className="mt-1 h-4 w-4 rounded border-gray-300 text-gray-900"
-                        checked={notifyLandlord}
-                        onChange={(e) => setNotifyLandlord(e.target.checked)}
-                      />
-                      <span>Đã thông báo cho chủ trọ về nhu cầu ở ghép.</span>
-                    </label>
-                    <label className="flex items-start gap-2">
-                      <input
-                        type="checkbox"
-                        className="mt-1 h-4 w-4 rounded border-gray-300 text-gray-900"
-                        checked={landlordConsent}
-                        onChange={(e) => setLandlordConsent(e.target.checked)}
-                      />
-                      <span>Đã nhận được sự đồng ý của chủ trọ.</span>
-                    </label>
-                  </div>
-                  <div className="mt-3 flex flex-wrap items-center gap-2">
-                    <span className={`rounded-full px-3 py-1 text-xs font-semibold ${statusBadge[approvalStatus].tone}`}>
-                      {statusBadge[approvalStatus].label}
-                    </span>
-                    <button
-                      type="button"
-                      onClick={() => setApprovalStatus("approved")}
-                      className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-50"
-                    >
-                      Giả lập xác nhận
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => setApprovalStatus("rejected")}
-                      className="rounded-full border border-gray-200 bg-white px-3 py-1 text-xs font-semibold text-gray-700 hover:bg-gray-50"
-                    >
-                      Giả lập từ chối
-                    </button>
-                  </div>
-                  <div className="mt-2 text-xs text-gray-500">Bài đăng chỉ hiển thị công khai khi chủ trọ xác nhận.</div>
-                </div>
-                ) : (
-                <div className="rounded-2xl border border-gray-200 bg-white p-5 text-sm text-gray-600 shadow-sm">
-                  Chủ trọ sẽ chủ động đăng bài hoặc phản hồi về yêu cầu ở ghép của bạn.
-                </div>
-              )}
+            )}
 
             <button
               type="button"
@@ -731,7 +627,7 @@ export default function RoommateManagementPage() {
               hệ thống sẽ tự đưa bài đăng lên mục tin đăng công khai.
             </div>
           </div>
-         )}
+        </div>
       </div>
     </UserPageShell>
   );
